@@ -18,6 +18,7 @@
     </div>
     <script>
      var dateSelect = $('#dateSelect').MPDatepicker();
+     var eventGraph  = $('#graph').MPChart({chartType: 'line'});
       // MP.api.ready(function() {
         // replace with event name of your choice
         // var eventName = $('#eventName').MPEventSelect();
@@ -84,10 +85,8 @@
                   }
                 })
               })
-              debugger
               console.log(final)
-              debugger
-              $('#graph').MPChart('setData', final)
+              eventGraph.MPChart('setData', final)
               })
               
             })
