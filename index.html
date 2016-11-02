@@ -77,7 +77,7 @@
                 _.each(_.keys(y), function(thing){
                   // console.log(y[thing])
                   if (y[thing] !== 0){
-                    var q = new Date(y[thing]).getTime() + 2.592e9 - 8.64e+7
+                    var q = new Date(thing).getTime() + 2.592e9 - 8.64e+7
                     q = new Date(q).toISOString().substr(0, 10)
                     console.log(q)
                     final[eventName][q] = final[eventName][q] / sum
