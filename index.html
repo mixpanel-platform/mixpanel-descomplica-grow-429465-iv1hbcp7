@@ -74,6 +74,7 @@
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
                 var sum = _.values(y).reduce(function(a, b){return a+b;})
+                console.log(_.values(y))
                 _.each(_.values(y), function(thing){
                   console.log(y[thing])
                   if (y[thing] !== 0){
