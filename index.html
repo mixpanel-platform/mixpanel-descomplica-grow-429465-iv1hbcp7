@@ -71,14 +71,17 @@
               _.each(dateArray, function(date){
                 final[eventName][date] = obj[date]
               })
-              console.log(final)
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
-                console.log(y)
-                console.log(_.values(y).reduce(function(a, b){return a+b;}))
-                _.each(dateArray, function(date){
-                  final[eventName][date] = obj[date]
+                var sum = _.values(y).reduce(function(a, b){return a+b;})
+                _.each(_.values(y), function(thing){
+                  if (y[thing] ! == 0){
+                    var q = new Date(y[thing]).getTime() + 2.592e9 - 8.64e+7
+                    q = new Date(q).toISOString().substr(0, 10)
+                    final[eventName][q] = final[eventName][q] / sum
+                  }
                 })
+              })
               })
               
             })
