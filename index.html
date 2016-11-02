@@ -73,9 +73,9 @@
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
                 console.log(y)
-                console.log(_.values(y))
+                console.log(_.values(y).reduce(function(a, b){return a+b;}))
                 _.each(dateArray, function(date){
-                  final[eventName][date] = obj[date] / y.sum()
+                  final[eventName][date] = obj[date] / 
                 })
               })
               
