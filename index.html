@@ -63,7 +63,7 @@
               promisesList.push(x)
             })
             
-            var finalize = Promise.all(promiseList).then(function(promiseArray){
+            var finalize = Promise.all(promisesList).then(function(promiseArray){
               console.log(JSON.stringify(promiseArray))
             })
         
