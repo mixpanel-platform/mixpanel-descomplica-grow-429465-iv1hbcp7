@@ -85,7 +85,8 @@
                 })
               })
               console.log(final)
-              $('#graph').MPChart('setData', final)
+              }).then(function(){
+                $('#graph').MPChart('setData', final)
               })
               
             })
