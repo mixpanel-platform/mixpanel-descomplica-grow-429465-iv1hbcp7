@@ -7,9 +7,70 @@
     <script src="https://cdn.mxpnl.com/libs/mixpanel-platform/build/mixpanel-platform.v0.latest.min.js"></script>
   </head>
   <body class="mixpanel-platform-body">
-    <h1>Hello, World!</h1>
+    <div class="mixpanel-platform-section">
+        <div id="eventName" style="float: left;"></div>
+         <div id="dateSelect" style="float: right;"></div>
+        <div style="clear: left"></div>
+        <div style="clear: both;"></div>
+       
+        <div id="graph"></div>
+        <div id = "graph2"></div>
+    </div>
     <script>
-      // Run queries and display results here
+     var dateSelect = $('#dateSelect').MPDatepicker();
+      // MP.api.ready(function() {
+        // replace with event name of your choice
+        // var eventName = $('#eventName').MPEventSelect();
+        eventName = 'App-View-Video' //change event name here
+        
+        getDates = function() {
+          return dateSelect.MPDatepicker('value')
+        }
+       
+
+        var runQuery = function() {
+          //$('#graph').empty();
+          var y = {}
+          y[eventName] = {}
+          var final = {}
+          final[eventName] = {}
+          promisesList = []
+          var $dau = MP.api.segment(eventName, {
+            from: getDates().from,
+            to: getDates().to,
+            unit: 'week',
+            event: eventName,
+            type: 'unique',
+            where: 'properties["gt_Subscriber"] == true and ("Android" in properties["gt_OS"]) and (defined (properties["gt_OS"]))'
+          });
+        
+          
+          var $mau = $.when($dau).done(function(dau){
+            var dateArray = _.keys(dau.values()[eventName])
+            _.each(date_array, function(dte){
+              var dtei = new Date(dte).getTime() -  2.592e9 + 8.64e+7
+              var dtef = new Date(dtei).toISOString().substr(0, 10)
+              // console.log ("DTE " + dte)
+              // console.log( "DTEF " + dtef)
+            
+              x = MP.api.segment(eventName, {
+                from: dtef,
+                to: dte,
+                type: 'unique',
+                interval: 30,
+                where: 'properties["gt_Subscriber"] == true and ("Android" in properties["gt_OS"]) and (defined (properties["gt_OS"]))'
+              });
+              promisesList.push(x)
+            })
+            
+            var finalize = Promise.all(promiseList).then(function(promiseArray){
+              console.log(JSON.stringify(promiseArray))
+            })
+        
+          
+        };
+     
+    dateSelect.on('change', runQuery);
     </script>
   </body>
 </html>
