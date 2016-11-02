@@ -66,7 +66,7 @@
               promisesList.push(x)
             })
           })
-            
+          
           var finalize = Promise.all(promisesList).then(function(promiseArray){
             console.log(JSON.stringify(promiseArray))
             _.each(dateArray, function(date){
