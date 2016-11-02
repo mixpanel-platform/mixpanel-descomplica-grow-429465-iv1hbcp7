@@ -75,7 +75,7 @@
                 var y = stuff.values()[eventName]
                 var sum = _.values(y).reduce(function(a, b){return a+b;})
                 _.each(_.values(y), function(thing){
-                  if (y[thing] ! == 0){
+                  if (y[thing] !== 0){
                     var q = new Date(y[thing]).getTime() + 2.592e9 - 8.64e+7
                     q = new Date(q).toISOString().substr(0, 10)
                     final[eventName][q] = final[eventName][q] / sum
