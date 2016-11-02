@@ -72,7 +72,7 @@
                 var y = stuff.values()[eventName]
                 console.log(y)
                 _.each(dateArray, function(date){
-                  var dte = new Date(date).getTime() +  2.592e9 - 8.64e+7
+                  var dte = new Date(date).getTime() -  2.592e9 + 8.64e+7
                   dte = new Date(dte).toISOString().substr(0, 10)
                   console.log(date)
                   console.log(dte)
