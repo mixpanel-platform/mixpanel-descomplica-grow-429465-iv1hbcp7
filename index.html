@@ -35,6 +35,8 @@
           var final = {}
           final[eventName] = {}
           promisesList = []
+          var dateArray = []
+          var obj = {}
           var $dau = MP.api.segment(eventName, {
             from: getDates().from,
             to: getDates().to,
@@ -46,7 +48,8 @@
         
           
           var $mau = $.when($dau).done(function(dau){
-            var dateArray = _.keys(dau.values()[eventName])
+            obj = dau.values()[eventName]
+            dateArray = _.keys(dau.values()[eventName])
             _.each(dateArray, function(dte){
               var dtei = new Date(dte).getTime() -  2.592e9 + 8.64e+7
               var dtef = new Date(dtei).toISOString().substr(0, 10)
@@ -59,12 +62,22 @@
                 type: 'unique',
                 interval: 30,
                 where: 'properties["gt_Subscriber"] == true and ("Android" in properties["gt_OS"]) and (defined (properties["gt_OS"]))'
-              });
+              })
               promisesList.push(x)
             })
             
             var finalize = Promise.all(promisesList).then(function(promiseArray){
               console.log(JSON.stringify(promiseArray))
+              var dateArray = 
+              _.each(promiseArray, function(stuff){
+                var y = stuff.values()[eventName]
+                _.each(dateArray, function(date){
+                  console.log(obj[date])
+                  console.log(y[date])
+                  final[eventName][date] = obj[date] / y[date]
+                })
+              })
+              
             })
         
           
