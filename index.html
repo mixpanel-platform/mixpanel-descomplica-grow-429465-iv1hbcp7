@@ -68,8 +68,10 @@
             
             var finalize = Promise.all(promisesList).then(function(promiseArray){
               console.log(JSON.stringify(promiseArray))
-              var numeratorsum = 0
-              var denominatorsum = 0
+              _.each(dateArray, function(date){
+                final[eventName][date] = obj[date]
+              })
+              console.log(final)
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
                 console.log(y)
