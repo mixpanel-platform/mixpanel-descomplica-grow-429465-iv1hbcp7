@@ -68,7 +68,6 @@
             
             var finalize = Promise.all(promisesList).then(function(promiseArray){
               console.log(JSON.stringify(promiseArray))
-              var dateArray = 
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
                 _.each(dateArray, function(date){
