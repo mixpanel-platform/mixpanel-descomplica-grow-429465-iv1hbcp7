@@ -47,7 +47,7 @@
           
           var $mau = $.when($dau).done(function(dau){
             var dateArray = _.keys(dau.values()[eventName])
-            _.each(date_array, function(dte){
+            _.each(dateArray, function(dte){
               var dtei = new Date(dte).getTime() -  2.592e9 + 8.64e+7
               var dtef = new Date(dtei).toISOString().substr(0, 10)
               // console.log ("DTE " + dte)
