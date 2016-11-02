@@ -70,13 +70,14 @@
               console.log(JSON.stringify(promiseArray))
               _.each(promiseArray, function(stuff){
                 var y = stuff.values()[eventName]
+                console.log(y)
                 _.each(dateArray, function(date){
-                  console.log("date")
-                  console.log(date)
-                  console.log("obj")
-                  console.log(obj[date])
-                  console.log("y")
-                  console.log(y[date])
+                  // console.log("date")
+                  // console.log(date)
+                  // console.log("obj")
+                  // console.log(obj[date])
+                  // console.log("y")
+                  // console.log(y[date])
                   final[eventName][date] = obj[date] / y[date]
                 })
               })
