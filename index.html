@@ -53,8 +53,8 @@
             _.each(dateArray, function(dte){
               var dtei = new Date(dte).getTime() -  2.592e9 + 8.64e+7
               var dtef = new Date(dtei).toISOString().substr(0, 10)
-              console.log ("DTE " + dte)
-              console.log( "DTEF " + dtef)
+              // console.log ("DTE " + dte)
+              // console.log( "DTEF " + dtef)
             
               x = MP.api.segment(eventName, {
                 from: dtef,
@@ -74,8 +74,8 @@
                 _.each(dateArray, function(date){
                   var dte = new Date(date).getTime() -  2.592e9 + 8.64e+7
                   dte = new Date(dte).toISOString().substr(0, 10)
-                  // console.log(date)
-                  // console.log(dte)
+                  console.log(date)
+                  console.log(dte)
                   final[eventName][date] = obj[date] / y[date]
                 })
               })
